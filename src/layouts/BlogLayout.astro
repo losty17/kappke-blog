@@ -13,7 +13,7 @@ const { title, subtitle, description, pubDate, updatedDate, heroImage } =
 <Root title={`${title} | kappke.dev`} description={description}>
   <article>
     {heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
-    <div class:list={[{ "mt-12": !heroImage }]}>
+    <div>
       <div class="mb-8">
         {
           pubDate && (
