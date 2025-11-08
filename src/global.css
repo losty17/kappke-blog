@@ -46,7 +46,7 @@ body {
 body > main,
 footer > main,
 header > main {
-  max-width: max(500px, min(760px, 70%));
+  max-width: min(100%, max(500px, min(760px, 70%)));
   margin: 0 auto;
   padding: 0 2rem;
 }
