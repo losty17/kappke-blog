@@ -1,0 +1,10 @@
+---
+import { getCollection, render } from "astro:content";
+
+const posts = await getCollection("blog");
+const aboutPost = posts.find((post) => post.id === "about")!;
+
+const { Content } = await render(aboutPost);
+---
+
+<Content />

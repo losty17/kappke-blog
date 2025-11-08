@@ -1,0 +1,21 @@
+---
+type Props = {
+  href?: string;
+  onClick?: () => void;
+  className?: string;
+};
+
+const { className, href, onClick } = Astro.props;
+---
+
+<a
+  href={href}
+  @click={onClick}
+  class:list={[
+    className,
+    "bg-white text-[var(--card)]! font-body px-3 py-1 rounded-full",
+    "hover:bg-[var(--foreground)] transition-colors cursor-pointer font-black!",
+  ]}
+>
+  <slot />
+</a>

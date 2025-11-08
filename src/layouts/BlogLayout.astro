@@ -1,0 +1,36 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import FormattedDate from "../components/FormattedDate.astro";
+import Root from "./Root.astro";
+
+type Props = CollectionEntry<"blog">["data"];
+
+const { title, subtitle, description, pubDate, updatedDate, heroImage } =
+  Astro.props;
+---
+
+<Root title={`${title} | kappke.dev`} description={description}>
+  <article>
+    {heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
+    <div class:list={[{ "mt-12": !heroImage }]}>
+      <div class="mb-8">
+        {
+          pubDate && (
+            <div class="date">
+              <FormattedDate date={pubDate} />
+              {updatedDate && (
+                <div class="last-updated-on">
+                  Last updated on <FormattedDate date={updatedDate} />
+                </div>
+              )}
+            </div>
+          )
+        }
+        <h1 class="font-head leading-12!">{title}</h1>
+        {subtitle ? <p class="text-[#ffffffb3]">{subtitle}</p> : <hr />}
+      </div>
+      <slot />
+    </div>
+  </article>
+</Root>

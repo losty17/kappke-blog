@@ -1,0 +1,18 @@
+---
+import AboutSection from "@/components/AboutSection.astro";
+import Root from "../layouts/Root.astro";
+import BlogSection from "@/components/BlogSection.astro";
+---
+
+<Root>
+  <main class="flex flex-col gap-16">
+    <div>
+      <h1 class="leading-none!">kappke.dev</h1>
+      <h4 class="font-body text-[#ffffffb3]! mb-8! leading-none!">
+        software craftsman made in brazil
+      </h4>
+      <AboutSection />
+    </div>
+    <BlogSection headingClassName="text-4xl!" />
+  </main>
+</Root>
