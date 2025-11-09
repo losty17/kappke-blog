@@ -1,0 +1,27 @@
+---
+import getDiscogsCollection from "@/lib/api/getDiscogsCollection";
+import DiscogsRelease from "@/components/discogs/discogs-release.astro";
+import Button from "@/components/ui/button.astro";
+
+const { releases } = (await getDiscogsCollection(1, 5, "added")) || {};
+---
+
+<section class="flex flex-col">
+  <h3>my music collection</h3>
+  <p class="mb-8!">
+    I'm always acquiring more CDs... You can check my most recent aquisitions
+    below or see my full CD catalogue on <a href="/music" class="font-black"
+      >my music collection</a
+    > page.
+  </p>
+  <ul class="flex flex-col gap-4">
+    {
+      releases?.map((release) => (
+        <li>
+          <DiscogsRelease release={release} />
+        </li>
+      ))
+    }
+  </ul>
+  <Button href="/music" className="mt-8! w-fit">see full collection ➔</Button>
+</section>

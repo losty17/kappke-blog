@@ -1,7 +1,8 @@
 ---
-import AboutSection from "@/components/AboutSection.astro";
-import Root from "../layouts/Root.astro";
-import BlogSection from "@/components/BlogSection.astro";
+import AboutSection from "@/components/home/about-section.astro";
+import Root from "@/layouts/root.astro";
+import BlogSection from "@/components/home/blog-section.astro";
+import DiscogsSection from "@/components/home/discogs-section.astro";
 ---
 
 <Root>
@@ -14,5 +15,6 @@ import BlogSection from "@/components/BlogSection.astro";
       <AboutSection />
     </div>
     <BlogSection headingClassName="text-4xl!" />
+    <DiscogsSection />
   </main>
 </Root>

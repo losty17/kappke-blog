@@ -1,0 +1,44 @@
+---
+import DiscogsRelease from "@/components/discogs/discogs-release.astro";
+import Root from "@/layouts/root.astro";
+import getDiscogsCollection from "@/lib/api/getDiscogsCollection";
+
+const { releases } = (await getDiscogsCollection()) || {};
+---
+
+<Root title="discogs collection | kappke.dev">
+  <article>
+    <h1 class="mb-8 text-4xl!">my music collection</h1>
+    <p>
+      For quite some time now I've been collecting my favorite albums on CDs.
+    </p>
+    <p>
+      It started when a friend of mine showed me her uncle had all Los
+      Hermanos's (probably my all time favorite band) albums on CD and I got
+      really jealous.
+    </p>
+    <p>So I thought "well, it's not that expensive, I should buy too!"</p>
+    <p>
+      And then I started a <a
+        href="https://discogs.com/yts0l"
+        class="font-black!"
+      >
+        Discogs account
+      </a>
+    </p>
+    <p>
+      So down here you can check my personal CD collection that I ~not so~
+      frequently update on Discogs, ordered by my personal rating.
+    </p>
+    <hr class="mt-8! mb-10!" />
+    <ul class="flex flex-col gap-4">
+      {
+        releases?.map((release) => (
+          <li>
+            <DiscogsRelease release={release} />
+          </li>
+        ))
+      }
+    </ul>
+  </article>
+</Root>

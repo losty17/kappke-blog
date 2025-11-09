@@ -1,0 +1,57 @@
+---
+import type { DiscogsRelease } from "@/lib/api/getDiscogsCollection";
+import { Image } from "astro:assets";
+import FormattedDate from "@/components/ui/formatted-date.astro";
+
+type Props = {
+  release: DiscogsRelease;
+};
+
+const { release } = Astro.props;
+
+const mainArtist = release.basicInformation.artists[0]?.name.replace(
+  /\s*\(.*?\)\s*/g,
+  ""
+);
+
+const getStarString = () => {
+  const maxRating = 5;
+  const rating = release.rating;
+
+  const filledStars = "★".repeat(rating);
+  const emptyStars = "☆".repeat(maxRating - rating);
+
+  return filledStars + emptyStars;
+};
+---
+
+<a
+  class="flex gap-4 cursor-pointer h-[100px] [&_*]:w-full [&_*:not(img)]:overflow-hidden"
+  href=`https://www.discogs.com/release/${release.id}`
+>
+  <Image
+    src={release.basicInformation.thumb}
+    alt={release.basicInformation.title}
+    width={100}
+    height={100}
+    class="aspect-square w-[100px]!"
+  />
+  <div
+    class="flex flex-col justify-between h-full text-[#ffffffb3] text-sm! [&_p]:leading-4! [&_*]:mb-0!"
+  >
+    <div class="flex flex-col gap-1">
+      <h5 class="text-base! leading-5!">
+        {release.basicInformation.title} ({release.basicInformation.year})
+      </h5>
+      <p>
+        {mainArtist} • {getStarString()}
+      </p>
+      <p class="truncate text-xs!">
+        {release.basicInformation.styles?.join(", ")}
+      </p>
+    </div>
+    <p class="text-xs!">
+      Added on <FormattedDate date={release.dateAdded} />
+    </p>
+  </div>
+</a>
